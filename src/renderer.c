@@ -1,8 +1,8 @@
 #include <raylib.h>
 #include <stddef.h>
 
-#include "renderer.h"
-#include "window.h"
+#include "../include/renderer.h"
+#include "../include/window.h"
 
 
 void init_renderer(Window* window)
