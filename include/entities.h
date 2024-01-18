@@ -10,6 +10,7 @@
 
 #include <raylib.h>
 #include <stddef.h>
+#include <stdlib.h>
 
 
 typedef struct
@@ -40,14 +41,31 @@ typedef struct
  * @return Player* - On success a pointer to the Player will be returned, If 
  * an error occurs NULL will be returned and errno will be set
  */
-Player* construct_player(Vector2 size, Vector2 position, KeyboardKey key_up, KeyboardKey key_dwn, size_t speed, size_t score);
+Player* construct_player(Vector2 size, Vector2 position, KeyboardKey key_up, KeyboardKey key_down, size_t speed, size_t score)
+{
+  Player* player = (Player*) calloc(1, sizeof(Player));
+  if (player == NULL)
+    return NULL;
+
+  player->size = size;
+  player->position = position;
+  player->key_up = key_up;
+  player->key_down = key_down;
+  player->speed = speed;
+  player->score = score;
+
+  return player;
+}
 
 /**
  * @brief Destructs Player instance
  * 
  * @param player Player instance which will be destructed
  */
-void destruct_player(Player* player);
+void destruct_player(Player* player)
+{
+  free(player);
+}
 
 /**
  * @brief Creates a Ball instance
@@ -57,13 +75,26 @@ void destruct_player(Player* player);
  * @return Ball* - On success a pointer to the Ball will be returned, If an
  * error occurs NULL will be returned and errno will be set 
  */
-Ball* construct_ball(Vector2 position, float radius);
+Ball* construct_ball(Vector2 position, float radius)
+{
+  Ball* ball = (Ball*) calloc(1, sizeof(Player));
+  if (ball == NULL)
+    return NULL;
+
+  ball->position = position;
+  ball->radius = radius;
+
+  return ball;
+}
 
 /**
  * @brief Destructs Ball instance
  * 
  * @param ball Ball instance which will be destructed
  */
-void destruct_ball(Ball* ball);
+void destruct_ball(Ball* ball)
+{
+  free(ball);
+}
 
 #endif /* C_PONG_ENTITIES_H */
