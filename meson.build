@@ -4,7 +4,10 @@ project('c-pong', 'c',
 
 ray_dep = dependency('raylib')
 
-exe = executable('c-pong', 'src/main.c', 'src/renderer.c',
-  install : true, dependencies : ray_dep)
+exe = executable('c-pong',
+  install : true, 
+  sources: ['src/main.c', 'src/renderer.c'],
+  include_directories: include_directories('include'),
+  dependencies : [ray_dep])
 
 test('basic', exe)
