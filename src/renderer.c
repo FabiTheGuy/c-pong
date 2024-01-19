@@ -7,8 +7,9 @@
 
 void init_renderer(Window* window)
 {
-  for (size_t i = 0; window->flags[i] != '\0'; i++)
-    SetConfigFlags(window->flags[i]);
+  if (window->flags != NULL)
+    for (size_t i = 0; window->flags[i] != '\0'; i++)
+      SetConfigFlags(window->flags[i]);
   InitWindow(window->size.x, window->size.y, window->title);
 }
 
