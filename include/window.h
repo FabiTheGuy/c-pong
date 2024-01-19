@@ -33,7 +33,7 @@ typedef struct
  * @return Window* - On success a pointer to the Window instance will be returned, If
  * an error occurs NULL will be returned and errno will be set
  */
-Window* construct_window(Vector2 size, Vector2 scale, char* title, bool fullscreen, ConfigFlags* flags)
+static Window* construct_window(Vector2 size, Vector2 scale, char* title, bool fullscreen, ConfigFlags* flags)
 {
   Window* win = (Window*) calloc(1, sizeof(Window));
   if (win == NULL)
@@ -53,7 +53,7 @@ Window* construct_window(Vector2 size, Vector2 scale, char* title, bool fullscre
  * 
  * @param window Window instance which will be destroyed
  */
-void destruct_window(Window* window)
+static void destruct_window(Window* window)
 {
   free(window->flags);
   free(window);

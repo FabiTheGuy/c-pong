@@ -41,7 +41,7 @@ typedef struct
  * @return Player* - On success a pointer to the Player will be returned, If 
  * an error occurs NULL will be returned and errno will be set
  */
-Player* construct_player(Vector2 size, Vector2 position, KeyboardKey key_up, KeyboardKey key_down, size_t speed, size_t score)
+static Player* construct_player(Vector2 size, Vector2 position, KeyboardKey key_up, KeyboardKey key_down, size_t speed, size_t score)
 {
   Player* player = (Player*) calloc(1, sizeof(Player));
   if (player == NULL)
@@ -62,7 +62,7 @@ Player* construct_player(Vector2 size, Vector2 position, KeyboardKey key_up, Key
  * 
  * @param player Player instance which will be destructed
  */
-void destruct_player(Player* player)
+static void destruct_player(Player* player)
 {
   free(player);
 }
@@ -75,7 +75,7 @@ void destruct_player(Player* player)
  * @return Ball* - On success a pointer to the Ball will be returned, If an
  * error occurs NULL will be returned and errno will be set 
  */
-Ball* construct_ball(Vector2 position, float radius)
+static Ball* construct_ball(Vector2 position, float radius)
 {
   Ball* ball = (Ball*) calloc(1, sizeof(Player));
   if (ball == NULL)
@@ -92,7 +92,7 @@ Ball* construct_ball(Vector2 position, float radius)
  * 
  * @param ball Ball instance which will be destructed
  */
-void destruct_ball(Ball* ball)
+static void destruct_ball(Ball* ball)
 {
   free(ball);
 }

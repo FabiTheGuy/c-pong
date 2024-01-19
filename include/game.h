@@ -35,7 +35,7 @@ typedef struct
  * @param game_running Game is running
  * @return Game* 
  */
-Game* construct_game(Window* window, Player* player_1, Player* player_2, Ball* ball, bool game_running)
+static Game* construct_game(Window* window, Player* player_1, Player* player_2, Ball* ball, bool game_running)
 {
   Game* game = (Game*) calloc(1, sizeof(Game));
   if (game == NULL)
@@ -55,7 +55,7 @@ Game* construct_game(Window* window, Player* player_1, Player* player_2, Ball* b
  * 
  * @param game The Game instance which will be destroyed
  */
-void destruct_game(Game* game)
+static void destruct_game(Game* game)
 {
   destruct_window(game->window);
   destruct_player(game->player_1);
