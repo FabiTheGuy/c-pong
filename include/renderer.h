@@ -14,7 +14,7 @@
 #include "entities.h"
 
 /**
- * @brief Initializes the Renderer by creating the Window an which the renderer
+ * @brief Initializes the Renderer by creating the Window on which the renderer
  * will draw
  * 
  * @param window Window instance 
@@ -22,19 +22,19 @@
 void init_renderer(Window* window);
 
 /**
- * @brief Draws the Player according to the window scaling to the monitor
+ * @brief Draws the Player to the Window
  * 
  * @param window Window instance
  * @param player Player instance
  */
-void draw_player(Window* window, Player* player);
+void draw_player(Player* player);
 
 /**
- * @brief Draws the Ball according ti the window scaling to the monitor
+ * @brief Draws the Ball to the Window
  * 
  * @param window 
  * @param ball 
  */
-void draw_ball(Window* window, Ball* ball);
+void draw_ball(Ball* ball);
 
 #endif /* C_PONG_RENDERER_H */
