@@ -13,7 +13,8 @@ include_directories = [
   './include'
 ]
 sources = [
-  './src/main.c'
+  './src/main.c',
+  './src/settings.c'
 ]
 
 executable(
