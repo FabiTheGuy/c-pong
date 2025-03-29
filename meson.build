@@ -2,7 +2,7 @@ project(
   'c-pong', 
   'c',
   version : '0.1',
-  default_options : ['warning_level=3']
+  default_options : ['warning_level=3', 'buildtype=debug']
 )
 
 dependencies = [
@@ -15,12 +15,14 @@ include_directories = [
 sources = [
   './src/main.c',
   './src/settings.c',
-  './src/layout.c'
+  './src/layout.c',
+  './src/main_menu.c'
 ]
 
 executable(
   'c-pong',
   sources: sources,
   include_directories: include_directories,
-  dependencies: dependencies
+  dependencies: dependencies,
+  link_args: ['-lm'],
 )
