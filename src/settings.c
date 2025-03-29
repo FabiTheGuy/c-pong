@@ -125,10 +125,52 @@ void init_settings_menu() {
         .selection = 0,
         .edited = false,
     };
+
+    /*
+     * Cancel Button
+     */
+
+    const Vector2 button_margin = get_element_margin(UI_ELEMENT_BUTTON);
+    const Vector2 button_dimension = get_ui_size(UI_ELEMENT_BUTTON);
+    const float button_font_size = get_font_size(UI_ELEMENT_BUTTON);
+    const float distance_button_group_bot = 
+        settings.screen_resolution.y -
+        button_dimension.y -
+        button_margin.y;
+
+    settings_menu.cancel_button = (Button) {
+        .bounds = (Rectangle) {
+            .x = center_screen_x - button_dimension.x - button_margin.x,
+            .y = distance_button_group_bot,
+            .width = button_dimension.x,
+            .height = button_dimension.y,
+        },
+        .font_size = button_font_size,
+        .content = "Cancel",
+        .pressed = false,
+    };
+
+    /*
+     * Apply Button
+     */
+    settings_menu.apply_button = (Button) {
+        .bounds = (Rectangle) {
+            .x = center_screen_x + 
+            button_margin.x,
+            .y = distance_button_group_bot,
+            .width = button_dimension.x,
+            .height = button_dimension.y,
+        },
+        .font_size = button_font_size,
+        .content = "Apply",
+        .pressed = false,
+    };
 }
 
 void draw_settings_menu() {
     draw_label(&settings_menu.heading_label);
+    draw_button(&settings_menu.cancel_button);
+    draw_button(&settings_menu.apply_button);
     draw_drop_down(&settings_menu.resolution_drop_down);
     if (!settings_menu.resolution_drop_down.edited)
         draw_drop_down(&settings_menu.fps_drop_down);
