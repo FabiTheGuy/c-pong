@@ -1,4 +1,9 @@
-#include "../include/settings.h"
+#include "settings.h"
+#include "label.h"
+#include "button.h"
+#include "drop_down.h"
+#include "layout.h"
+#include "raygui.h"
 #include <stddef.h>
 #include <stdio.h>
 #include <errno.h>
@@ -8,8 +13,11 @@
 
 
 Settings settings;
+SettingsMenu settings_menu;
 
 bool init_settings() {
+    settings = (Settings) {0};
+
     if (!load_settings())
         return false;
 
@@ -28,6 +36,63 @@ bool init_settings() {
     }
 
     return false;
+}
+
+void init_settings_menu() {
+    settings_menu = (SettingsMenu) {0};
+
+    const float center_screen_x = layout_center_x();
+    const float heading_font_size = get_font_size(UI_ELEMENT_HEADING);
+    const Vector2 heading_margin = get_element_margin(UI_ELEMENT_HEADING);
+
+    /*
+     * Heading
+     */
+    const char* heading_content = "Settings";
+    const Vector2 heading_dimension = MeasureTextEx(GetFontDefault(), heading_content, heading_font_size, TEXT_SPACING);
+    settings_menu.heading_label = (Label) {
+        .bounds = (Rectangle) {
+            .x = center_screen_x - (heading_dimension.x / 2),
+            .y = heading_margin.y,
+            .width = heading_dimension.x,
+            .height = heading_dimension.y,
+        },
+        .content = heading_content,
+        .font_size = heading_font_size,
+        .color = RAYWHITE,
+    };
+
+    /*
+     * Resolution DropDown
+     */
+    const float distance_drop_down_top =
+       settings_menu.heading_label.bounds.y +
+       settings_menu.heading_label.bounds.height + 
+       heading_margin.y;
+    const float drop_down_font_size = get_font_size(UI_ELEMENT_DROP_DOWN);
+    const Vector2 drop_down_dimension = get_ui_size(UI_ELEMENT_DROP_DOWN);
+
+    settings_menu.resolution_drop_down = (DropDown) {
+        .bounds = (Rectangle) {
+            .x = center_screen_x - (drop_down_dimension.x / 2),
+            .y = distance_drop_down_top,
+            .width = drop_down_dimension.x,
+            .height = drop_down_dimension.y,
+        },
+        .options = POSSIBLE_RESOLUTIONS,
+        .font_size = drop_down_font_size,
+        .selection = 0,
+        .edited = false,
+    };
+}
+
+void draw_settings_menu() {
+    draw_label(&settings_menu.heading_label);
+    draw_drop_down(&settings_menu.resolution_drop_down);
+}
+
+void update_settings_menu() {
+    return;
 }
 
 bool load_settings() {

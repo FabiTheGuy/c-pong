@@ -8,6 +8,7 @@ typedef enum {
     UI_ELEMENT_BUTTON,
     UI_ELEMENT_LABEL,
     UI_ELEMENT_HEADING,
+    UI_ELEMENT_DROP_DOWN,
 } UIElementType;
 
 /**

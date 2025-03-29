@@ -1,10 +1,15 @@
 #ifndef C_PONG_SETTINGS_H
 #define C_PONG_SETTINGS_H
 
+#include "label.h"
+#include "button.h"
+#include "drop_down.h"
 #include <stdbool.h>
 #include <raylib.h>
 
+
 #define SETTINGS_FILE_PATH "./settings.ini"
+#define POSSIBLE_RESOLUTIONS "Resolution;3840x2160;2560x1440;1920x1080;1280x800"
 
 typedef struct {
     Vector2 screen_resolution;
@@ -14,7 +19,15 @@ typedef struct {
     float music_volume;
 } Settings;
 
+typedef struct {
+    Label heading_label;
+    DropDown resolution_drop_down;
+    Button cancel_button;
+    Button apply_button;
+} SettingsMenu;
+
 extern Settings settings;
+extern SettingsMenu settings_menu;
 
 /**
  * @brief Initializes the settings struct.
@@ -25,6 +38,12 @@ extern Settings settings;
  * @return false - if the initialization went successful, true otherwise
  */
 bool init_settings();
+
+void init_settings_menu();
+
+void draw_settings_menu();
+
+void update_settings_menu();
 
 /**
  * @brief Reads/Parse content from the settings file
