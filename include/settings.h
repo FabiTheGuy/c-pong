@@ -10,6 +10,8 @@
 
 #define SETTINGS_FILE_PATH "./settings.ini"
 #define POSSIBLE_RESOLUTIONS "Resolution;3840x2160;2560x1440;1920x1080;1280x800"
+#define POSSIBLE_FPS "FPS;60;30"
+#define POSSIBLE_FULLSCREEN_STATES "Fullscreen;ON;OFF"
 
 typedef struct {
     Vector2 screen_resolution;
@@ -22,6 +24,8 @@ typedef struct {
 typedef struct {
     Label heading_label;
     DropDown resolution_drop_down;
+    DropDown fps_drop_down;
+    DropDown fullscreen_drop_down;
     Button cancel_button;
     Button apply_button;
 } SettingsMenu;

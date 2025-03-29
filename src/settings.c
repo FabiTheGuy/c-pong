@@ -65,12 +65,12 @@ void init_settings_menu() {
     /*
      * Resolution DropDown
      */
+    const Vector2 drop_down_dimension = get_ui_size(UI_ELEMENT_DROP_DOWN);
+    const float drop_down_font_size = get_font_size(UI_ELEMENT_DROP_DOWN);
     const float distance_drop_down_top =
        settings_menu.heading_label.bounds.y +
        settings_menu.heading_label.bounds.height + 
        heading_margin.y;
-    const float drop_down_font_size = get_font_size(UI_ELEMENT_DROP_DOWN);
-    const Vector2 drop_down_dimension = get_ui_size(UI_ELEMENT_DROP_DOWN);
 
     settings_menu.resolution_drop_down = (DropDown) {
         .bounds = (Rectangle) {
@@ -84,11 +84,58 @@ void init_settings_menu() {
         .selection = 0,
         .edited = false,
     };
+
+    /*
+     * FPS DropDown
+     */
+    const Vector2 drop_down_margin = get_element_margin(UI_ELEMENT_DROP_DOWN);
+    const float distance_fps_drop_down_top = 
+        settings_menu.resolution_drop_down.bounds.y +
+        settings_menu.resolution_drop_down.bounds.height +
+        drop_down_margin.y;
+
+    settings_menu.fps_drop_down = (DropDown) {
+        .bounds = (Rectangle) {
+            .x = center_screen_x - (drop_down_dimension.x / 2),
+            .y = distance_fps_drop_down_top,
+            .width = drop_down_dimension.x,
+            .height = drop_down_dimension.y,
+        },
+        .options = POSSIBLE_FPS,
+        .font_size = drop_down_font_size,
+        .selection = 0,
+        .edited = false,
+    };
+
+    /*
+     * Fullscreen DropDown
+     */
+    const float distance_fullscreen_drop_down_top =
+        settings_menu.fps_drop_down.bounds.y +
+        settings_menu.fps_drop_down.bounds.height +
+        drop_down_margin.y;
+    
+    settings_menu.fullscreen_drop_down = (DropDown) {
+        .bounds = (Rectangle) {
+            .x = center_screen_x - (drop_down_dimension.x / 2),
+            .y = distance_fullscreen_drop_down_top,
+            .width = drop_down_dimension.x,
+            .height = drop_down_dimension.y,
+        },
+        .options = POSSIBLE_FULLSCREEN_STATES,
+        .font_size = drop_down_font_size,
+        .selection = 0,
+        .edited = false,
+    };
 }
 
 void draw_settings_menu() {
     draw_label(&settings_menu.heading_label);
     draw_drop_down(&settings_menu.resolution_drop_down);
+    if (!settings_menu.resolution_drop_down.edited)
+        draw_drop_down(&settings_menu.fps_drop_down);
+    if (!settings_menu.resolution_drop_down.edited && !settings_menu.fps_drop_down.edited)
+        draw_drop_down(&settings_menu.fullscreen_drop_down);
 }
 
 void update_settings_menu() {
