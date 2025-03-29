@@ -3,8 +3,8 @@
 #include "label.h"
 #include "layout.h"
 #include "settings.h"
+#include "state_manager.h"
 
-#include <stdio.h>
 #include <raylib.h>
 
 
@@ -110,16 +110,13 @@ void draw_main_menu() {
 
 void update_main_menu() {
     if (main_menu.start_button.pressed) {
-        printf("Start Button pressed\n");
-        /* TODO: Implement behaviour */
+        change_state_manager_state(GAMEPLAY);
         main_menu.start_button.pressed = false;
     } else if (main_menu.settings_button.pressed) {
-        printf("Settings Button pressed\n");
-        /* TODO: Implement behaviour */
+        change_state_manager_state(SETTINGS);
         main_menu.settings_button.pressed = false;
     } else if (main_menu.quit_button.pressed) {
-        printf("Quit Button pressed\n");
-        /* TODO: Implement behaviour */
+        state_manager.is_running = false;
         main_menu.quit_button.pressed = false;
     }
 }
