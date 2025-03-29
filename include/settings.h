@@ -17,8 +17,6 @@ typedef struct {
     Vector2 screen_resolution;
     bool fullscreen;
     unsigned int fps;
-    float sfx_volume;
-    float music_volume;
 } Settings;
 
 typedef struct {

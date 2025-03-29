@@ -26,8 +26,6 @@ bool init_settings() {
         .screen_resolution = (Vector2) { .x = 1280, .y = 800 },
         .fullscreen = false,
         .fps = 60,
-        .sfx_volume = 1.0f,
-        .music_volume = 1.0f,
     };
 
     if (write_settings()) {
@@ -170,10 +168,6 @@ bool write_settings() {
     fprintf(file, "fullscreen=%b\n", settings.fullscreen);
     fprintf(file, "fps=%i\n", settings.fps);
 
-    fprintf(file, "[Audio]\n");
-    fprintf(file, "sfx_volume=%.2f\n", settings.sfx_volume);
-    fprintf(file, "music_volume=%.2f\n", settings.music_volume);
-
     fclose(file);
 
     return false;
@@ -206,10 +200,6 @@ static int handler(void* data, const char* section, const char* name, const char
         settings->fullscreen = (bool) atoi(value);
     } else if (MATCH("video", "fps")) {
         settings->fps = atoi(value);
-    } else if (MATCH("audio", "sfx_volume")) {
-        settings->sfx_volume = atof(value);
-    } else if (MATCH("audio", "music_volume")) {
-        settings->music_volume = atof(value);
     } else {
         return 0;
     }
