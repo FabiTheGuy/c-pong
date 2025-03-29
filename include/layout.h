@@ -3,6 +3,49 @@
 
 #include <raylib.h>
 
+
+typedef enum {
+    UI_ELEMENT_BUTTON,
+    UI_ELEMENT_LABEL,
+    UI_ELEMENT_HEADING,
+} UIElementType;
+
+/**
+ * @brief Retrieves the predefined size of a UI element.
+ *
+ * This function returns the width and height of an element based on its type.
+ * Labels and headings should determine their size dynamically using `MeasureText()`
+ * or `MeasureTextEx()`.
+ *
+ * @param element The type of UI element.
+ * @return A `Vector2` containing the width and height of the button in pixels.
+ *         If the element type is not supported, it returns `{0, 0}`.
+ */
+Vector2 get_ui_size(UIElementType element);
+
+/**
+ * @brief Retrieves the margin (spacing) around a UI element.
+ *
+ * This function returns the appropriate outer margin for a given UI element type.
+ * The margin defines the spacing between this element and others in the UI.
+ *
+ * @param element The type of UI element (button, label, or heading).
+ * @return A `Vector2` containing the horizontal and vertical margin in pixels.
+ */
+Vector2 get_element_margin(UIElementType element);
+
+/**
+ * @brief Determines the font size for a given UI element.
+ *
+ * Since labels and headings require dynamic size calculation via `MeasureText()`,
+ * this function only provides a default font size for each type.
+ *
+ * @param element The type of UI element (button, label, or heading).
+ * @return A `Vector2` where `x` is ignored, and `y` represents the font size in pixels.
+ *         Labels and headings should still use `MeasureText()` for accurate dimensions.
+ */
+float get_font_size(UIElementType element);
+
 /**
  * Converts a percentage of the screen width into pixels.
  *

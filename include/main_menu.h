@@ -6,7 +6,7 @@
 
 
 typedef struct {
-    Label heading;
+    Label heading_label;
     Button start_button;
     Button settings_button;
     Button quit_button;
