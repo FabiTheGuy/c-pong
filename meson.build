@@ -16,7 +16,8 @@ sources = [
   './src/main.c',
   './src/settings.c',
   './src/layout.c',
-  './src/main_menu.c'
+  './src/main_menu.c',
+  './src/state_manager.c'
 ]
 
 executable(

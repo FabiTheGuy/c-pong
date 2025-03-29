@@ -1,6 +1,10 @@
-#include "../include/settings.h"
+#include "settings.h"
+#include "state_manager.h"
 #include <stdio.h>
 #include <raylib.h>
+
+#define RAYGUI_IMPLEMENTATION
+#include "raygui.h"
 
 
 int main(void) {
@@ -13,12 +17,16 @@ int main(void) {
     SetTargetFPS(settings.fps);
     if (settings.fullscreen && !IsWindowFullscreen())
         ToggleFullscreen();
-
-
+        
+    init_state_manager();
+    
     while (!WindowShouldClose()) {
         BeginDrawing();
 
         ClearBackground(BLACK);
+
+        state_manager.draw();
+        state_manager.update();
 
         EndDrawing();
     }
