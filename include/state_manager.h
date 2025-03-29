@@ -1,6 +1,9 @@
 #ifndef C_PONG_STATE_MANAGER_H
 #define C_PONG_STATE_MANAGER_H
 
+#include <stdbool.h>
+
+
 typedef enum {
     MAIN_MENU,
     SETTINGS,
@@ -9,6 +12,7 @@ typedef enum {
 } State;
 
 typedef struct {
+    bool is_running;
     State state;
     void (*draw)();
     void (*update)();

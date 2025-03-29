@@ -9,6 +9,8 @@ StateManager state_manager;
 void init_state_manager() {
     state_manager = (StateManager) {0};
 
+    state_manager.is_running = true;
+
     init_main_menu();
     init_settings_menu();
 

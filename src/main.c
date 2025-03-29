@@ -20,7 +20,7 @@ int main(void) {
         
     init_state_manager();
     
-    while (!WindowShouldClose()) {
+    while (!WindowShouldClose() && state_manager.is_running) {
         BeginDrawing();
 
         ClearBackground(BLACK);
