@@ -16,6 +16,6 @@ typedef struct {
  *
  * @param button A pointer to a `Button` structure
  */
-void draw_button(const Button* button);
+void draw_button(Button* button);
 
 #endif /* C_PONG_BUTTON_H */
