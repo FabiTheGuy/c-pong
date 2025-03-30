@@ -1,17 +1,10 @@
 #ifndef C_PONG_SETTINGS_H
 #define C_PONG_SETTINGS_H
 
-#include "label.h"
-#include "button.h"
-#include "drop_down.h"
 #include <stdbool.h>
 #include <raylib.h>
 
-
 #define SETTINGS_FILE_PATH "./settings.ini"
-#define POSSIBLE_RESOLUTIONS "Resolution;3840x2160;2560x1440;1920x1080;1280x800"
-#define POSSIBLE_FPS "FPS;60;30"
-#define POSSIBLE_FULLSCREEN_STATES "Fullscreen;ON;OFF"
 
 typedef struct {
     Vector2 screen_resolution;
@@ -19,17 +12,7 @@ typedef struct {
     unsigned int fps;
 } Settings;
 
-typedef struct {
-    Label heading_label;
-    DropDown resolution_drop_down;
-    DropDown fps_drop_down;
-    DropDown fullscreen_drop_down;
-    Button cancel_button;
-    Button apply_button;
-} SettingsMenu;
-
 extern Settings settings;
-extern SettingsMenu settings_menu;
 
 /**
  * @brief Initializes the settings struct.
@@ -40,12 +23,6 @@ extern SettingsMenu settings_menu;
  * @return false - if the initialization went successful, true otherwise
  */
 bool init_settings();
-
-void init_settings_menu();
-
-void draw_settings_menu();
-
-void update_settings_menu();
 
 /**
  * @brief Reads/Parse content from the settings file
@@ -67,7 +44,7 @@ bool load_settings();
 bool write_settings();
 
 /**
- * @brief Is only neccessary for the inih parser
+ * @brief Is only necessary for the inih parser
  *
  * @note Do not use this function outside of load_settings()
  */

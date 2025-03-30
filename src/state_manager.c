@@ -1,6 +1,6 @@
 #include "state_manager.h"
-#include "main_menu.h"
-#include "settings.h"
+#include "main-menu.h"
+#include "settings-menu.h"
 
 
 StateManager state_manager;

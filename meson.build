@@ -21,6 +21,7 @@ sources = [
   './src/ui/label.c',
   './src/ui/layout.c',
   './src/ui/main-menu.c',
+  './src/ui/settings-menu.c',
   './src/state_manager.c',
   './src/utils/settings.c',
   './src/utils/utils.c',
