@@ -5,3 +5,6 @@ clangd/
 builddir/
 
 # Misc
+.vscode/
+.idea/
+.ideas

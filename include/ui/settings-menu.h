@@ -10,11 +10,17 @@
 #define FULLSCREEN_STATES "Fullscreen;ON;OFF"
 
 typedef struct {
+    /* Represents the main heading label displayed in the interface. */
     Label heading_label;
+    /* Represents a dropdown menu for selecting screen resolution options. */
     DropDown resolution_drop_down;
+    /* Represents a dropdown menu for selecting FPS (frames per second) options. */
     DropDown fps_drop_down;
+    /* Represents a dropdown menu for selecting fullscreen mode options. */
     DropDown fullscreen_drop_down;
+    /* Represents a button for exit the settings menu. */
     Button cancel_button;
+    /* Represents a button used to confirm or apply changes in the settings menu. */
     Button apply_button;
 } SettingsMenu;
 

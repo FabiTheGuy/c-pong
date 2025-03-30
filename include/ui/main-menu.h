@@ -6,9 +6,13 @@
 
 
 typedef struct {
+    /* Represents the heading label displayed at the top of the main menu. */
     Label heading_label;
+    /* Represents the "Start" button in the main menu interface. */
     Button start_button;
+    /*  Represents the "Settings" button in the main menu interface. */
     Button settings_button;
+    /*  Represents the "Quit Game" button in the main menu. */
     Button quit_button;
 } MainMenu;
 

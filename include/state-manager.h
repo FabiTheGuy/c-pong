@@ -12,9 +12,13 @@ typedef enum {
 } State;
 
 typedef struct {
+    /* Flag, which indicated if the game is running or not. */
     bool is_running;
+    /* Represents the current state of the game. */
     State state;
+    /* Function pointer to the current state's draw function. */
     void (*draw)();
+    /* Function pointer for updating the current state. */
     void (*update)();
 } StateManager;
 

@@ -7,8 +7,11 @@
 #define SETTINGS_FILE_PATH "./settings.ini"
 
 typedef struct {
+    /* Represents the current game screen resolution. */
     Vector2 screen_resolution;
+    /* Represents whether the current game screen is in Fullscreen or not */
     bool fullscreen;
+    /* Represents the current FPS (frames per second) the game screen will be rendered */
     unsigned int fps;
 } Settings;
 
