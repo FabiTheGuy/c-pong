@@ -1,12 +1,13 @@
 #include "settings.h"
+#include "raygui.h"
 #include "label.h"
 #include "button.h"
 #include "drop_down.h"
 #include "layout.h"
+
 #include "state_manager.h"
 #include "utils.h"
-#include "raygui.h"
-#include <stddef.h>
+
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>

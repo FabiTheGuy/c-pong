@@ -10,15 +10,17 @@ dependencies = [
   dependency('raylib', required: true)
 ]
 include_directories = [
-  './include'
+  include_directories('./include'),
+  include_directories('./include/ui'),
+  include_directories('./include/utils'),
 ]
 sources = [
   './src/main.c',
-  './src/settings.c',
-  './src/layout.c',
-  './src/main_menu.c',
+  './src/ui/layout.c',
+  './src/ui/main_menu.c',
   './src/state_manager.c',
-  './src/utils.c'
+  './src/utils/settings.c',
+  './src/utils/utils.c',
 ]
 
 executable(
