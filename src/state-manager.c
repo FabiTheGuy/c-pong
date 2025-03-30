@@ -1,10 +1,9 @@
-#include "state_manager.h"
+#include "state-manager.h"
 #include "main-menu.h"
 #include "settings-menu.h"
 
 
 StateManager state_manager;
-
 
 void init_state_manager() {
     state_manager = (StateManager) {0};
@@ -17,7 +16,7 @@ void init_state_manager() {
     change_state_manager_state(MAIN_MENU);
 }
 
-void change_state_manager_state(State state) {
+void change_state_manager_state(const State state) {
     state_manager.state = state;
     
     switch (state) {
@@ -29,6 +28,12 @@ void change_state_manager_state(State state) {
         case SETTINGS: {
             state_manager.draw = draw_settings_menu;
             state_manager.update = update_settings_menu;
+            break;
+        }
+        default: {
+            state_manager.state = MAIN_MENU;
+            state_manager.draw = draw_main_menu;
+            state_manager.update = update_main_menu;
             break;
         }
     }

@@ -20,7 +20,6 @@ typedef struct {
 
 extern StateManager state_manager;
 
-
 /**
  * @brief Initializes the state manager and sets the initial state.
  * 
@@ -38,6 +37,6 @@ void init_state_manager();
  * 
  * @param state The new state to switch to.
  */
-void change_state_manager_state(State state);
+void change_state_manager_state(const State state);
 
 #endif /* C_PONG_STATE_MANAGER_H */
