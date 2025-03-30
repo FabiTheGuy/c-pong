@@ -14,7 +14,6 @@ typedef struct {
 
 extern MainMenu main_menu;
 
-
 /**
  * @brief Initializes the main menu by setting up the heading and buttons.
  * 

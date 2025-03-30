@@ -32,6 +32,7 @@ Vector2 get_ui_size(UIElementType element);
  *
  * @param element The type of UI element (button, label, or heading).
  * @return A `Vector2` containing the horizontal and vertical margin in pixels.
+ *         If the element type is not supported, it returns `{0, 0}`.
  */
 Vector2 get_element_margin(UIElementType element);
 
@@ -42,10 +43,10 @@ Vector2 get_element_margin(UIElementType element);
  * this function only provides a default font size for each type.
  *
  * @param element The type of UI element (button, label, or heading).
- * @return A `Vector2` where `x` is ignored, and `y` represents the font size in pixels.
- *         Labels and headings should still use `MeasureText()` for accurate dimensions.
+ * @return A `float` representing the font size.
+ *         IF the element type if not supported, it returns 0.
  */
-float get_font_size(UIElementType element);
+int get_font_size(UIElementType element);
 
 /**
  * Converts a percentage of the screen width into pixels.
@@ -121,6 +122,5 @@ float layout_center_y();
  * @return A `Vector2` representing the pixel position at the center of the screen.
  */
 Vector2 layout_center();
-
 
 #endif /* C_PONG_LAYOUT_H */

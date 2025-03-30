@@ -1,21 +1,19 @@
-#include "main_menu.h"
+#include "main-menu.h"
 #include "button.h"
 #include "label.h"
 #include "layout.h"
 #include "state_manager.h"
-
 #include <raylib.h>
 
 
 MainMenu main_menu;
 
-
 void init_main_menu() {
     main_menu = (MainMenu) {0};
 
     const float center_screen_x = layout_center_x();
-    const float button_font_size = get_font_size(UI_ELEMENT_BUTTON);
-    const float heading_font_size = get_font_size(UI_ELEMENT_HEADING);
+    const int button_font_size = get_font_size(UI_ELEMENT_BUTTON);
+    const int heading_font_size = get_font_size(UI_ELEMENT_HEADING);
     const Vector2 button_dimension = get_ui_size(UI_ELEMENT_BUTTON);
     const Vector2 button_margin = get_element_margin(UI_ELEMENT_BUTTON);
     const Vector2 heading_margin = get_element_margin(UI_ELEMENT_HEADING);
@@ -24,8 +22,8 @@ void init_main_menu() {
     /* 
      * Heading 
      */
-    const char* heading_content = "C-Pong";
-    const Vector2 heading_dimension = MeasureTextEx(GetFontDefault(), heading_content, heading_font_size, TEXT_SPACING);
+    char* heading_content = "C-Pong";
+    const Vector2 heading_dimension = MeasureTextEx(GetFontDefault(), heading_content, (float) heading_font_size, TEXT_SPACING);
 
     main_menu.heading_label = (Label) {
         .bounds = (Rectangle) {

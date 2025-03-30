@@ -16,8 +16,11 @@ include_directories = [
 ]
 sources = [
   './src/main.c',
+  './src/ui/button.c',
+  './src/ui/drop-down.c',
+  './src/ui/label.c',
   './src/ui/layout.c',
-  './src/ui/main_menu.c',
+  './src/ui/main-menu.c',
   './src/state_manager.c',
   './src/utils/settings.c',
   './src/utils/utils.c',

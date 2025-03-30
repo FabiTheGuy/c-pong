@@ -13,26 +13,28 @@ Vector2 get_ui_size(UIElementType element) {
 
 Vector2 get_element_margin(UIElementType element) {
     switch (element) {
-        case UI_ELEMENT_BUTTON: return layout_px_from_percentage_x_y(3.125, 5);
-        case UI_ELEMENT_DROP_DOWN: return layout_px_from_percentage_x_y(3.125, 5);
-        case UI_ELEMENT_HEADING: return layout_px_from_percentage_x_y(6.25, 10);
-        case UI_ELEMENT_LABEL: return layout_px_from_percentage_x_y(3.125, 5);
+        case UI_ELEMENT_BUTTON: return layout_px_from_percentage_x_y(3.125f, 5);
+        case UI_ELEMENT_DROP_DOWN: return layout_px_from_percentage_x_y(3.125f, 5);
+        case UI_ELEMENT_HEADING: return layout_px_from_percentage_x_y(6.25f, 10);
+        case UI_ELEMENT_LABEL: return layout_px_from_percentage_x_y(3.125f, 5);
+        default: return (Vector2) { .x = 0, .y = 0 };
     }
 }
 
-float get_font_size(UIElementType element) {
+int get_font_size(UIElementType element) {
     switch (element) {
-        case UI_ELEMENT_BUTTON: return layout_px_from_percentage_y(5);
-        case UI_ELEMENT_DROP_DOWN: return layout_px_from_percentage_y(5);
-        case UI_ELEMENT_LABEL: return layout_px_from_percentage_y(5);
-        case UI_ELEMENT_HEADING: return layout_px_from_percentage_y(15);
+        case UI_ELEMENT_BUTTON: return (int) layout_px_from_percentage_y(5);
+        case UI_ELEMENT_DROP_DOWN: return (int) layout_px_from_percentage_y(5);
+        case UI_ELEMENT_LABEL: return (int) layout_px_from_percentage_y(5);
+        case UI_ELEMENT_HEADING: return (int) layout_px_from_percentage_y(15);
+        default: return 0;
     }
 }
 
 float layout_px_from_percentage_x(float percentage) {
     if (percentage >= 100)
         return settings.screen_resolution.x;
-    else if (percentage <= 0)
+    if (percentage <= 0)
         return 0;
 
     return settings.screen_resolution.x * (percentage / 100);
@@ -41,7 +43,7 @@ float layout_px_from_percentage_x(float percentage) {
 float layout_px_from_percentage_y(float percentage) {
     if (percentage >= 100)
         return settings.screen_resolution.y;
-    else if (percentage <= 0)
+    if (percentage <= 0)
         return 0;
 
     return settings.screen_resolution.y * (percentage / 100);
@@ -50,7 +52,7 @@ float layout_px_from_percentage_y(float percentage) {
 Vector2 layout_px_from_percentage(float percentage) {
     if (percentage >= 100)
         return settings.screen_resolution;
-    else if (percentage <= 0)
+    if (percentage <= 0)
         return (Vector2) { .x = 0, .y = 0 };
 
     return (Vector2) { 
