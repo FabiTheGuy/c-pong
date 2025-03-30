@@ -3,6 +3,8 @@
 #include "button.h"
 #include "drop_down.h"
 #include "layout.h"
+#include "state_manager.h"
+#include "utils.h"
 #include "raygui.h"
 #include <stddef.h>
 #include <stdio.h>
@@ -129,7 +131,6 @@ void init_settings_menu() {
     /*
      * Cancel Button
      */
-
     const Vector2 button_margin = get_element_margin(UI_ELEMENT_BUTTON);
     const Vector2 button_dimension = get_ui_size(UI_ELEMENT_BUTTON);
     const float button_font_size = get_font_size(UI_ELEMENT_BUTTON);
@@ -179,7 +180,47 @@ void draw_settings_menu() {
 }
 
 void update_settings_menu() {
-    return;
+    if (settings_menu.apply_button.pressed) {
+        bool data_changed = false;
+
+        /* Checks whether one of the DropDowns was set */
+        if (settings_menu.resolution_drop_down.selection) {
+            StringArray* resolution_options = split_str(POSSIBLE_RESOLUTIONS, ';');
+            char* selected_resolution = resolution_options->data[settings_menu.resolution_drop_down.selection];
+            StringArray* resolution_dimension = split_str(selected_resolution, 'x');
+
+            settings.screen_resolution.x = (float) atoi(resolution_dimension->data[0]);
+            settings.screen_resolution.y = (float) atoi(resolution_dimension->data[1]);
+
+            free_str_arr(resolution_options);
+            free_str_arr(resolution_dimension);
+            data_changed = true;
+        } 
+        if (settings_menu.fps_drop_down.selection) {
+            StringArray* fps_options = split_str(POSSIBLE_FPS, ';');
+
+            settings.fps = atoi(fps_options->data[settings_menu.fps_drop_down.selection]);
+            SetTargetFPS(settings.fps);
+
+            free_str_arr(fps_options);
+            data_changed = true;
+        } 
+        if (settings_menu.fullscreen_drop_down.selection) {
+            StringArray* fullscreen_options = split_str(POSSIBLE_FULLSCREEN_STATES, ';');
+
+            settings.fullscreen = strcmp(fullscreen_options->data[settings_menu.fullscreen_drop_down.selection], "OFF");
+            if (IsWindowFullscreen() != settings.fullscreen)
+                ToggleFullscreen();
+
+            free_str_arr(fullscreen_options);
+            data_changed = true;
+        }
+
+        if (data_changed)
+            write_settings();
+    } else if (settings_menu.cancel_button.pressed) {
+        change_state_manager_state(MAIN_MENU);
+    }
 }
 
 bool load_settings() {
@@ -220,24 +261,17 @@ static int handler(void* data, const char* section, const char* name, const char
 
     #define MATCH(s, n) (strcasecmp(section, s) == 0 && strcasecmp(name, n) == 0)
     if (MATCH("video", "screen_resolution")) {
-        size_t value_len = strlen(value);
-        size_t delimiter_location = 0;
+        StringArray* resolution_str = split_str(value, 'x');
 
-        /* Search delimiter 'x' */
-        for (size_t i = 0; i < value_len; i++)
-            delimiter_location = (value[i] == 'x') ? i : delimiter_location;
+        if (resolution_str->size != 2) {
+            free_str_arr(resolution_str);
+            return 0;
+        }
+            
+        settings->screen_resolution.x = (float) atoi(resolution_str->data[0]);
+        settings->screen_resolution.y = (float) atoi(resolution_str->data[1]);
 
-        /* Extract the width (left side of delimiter) */
-        size_t width_str_len = delimiter_location;
-        char width[width_str_len];
-        strncpy(width, value, width_str_len);
-        settings->screen_resolution.x = (float) atoi(width);
-
-        /* Extract the height (right side of delimiter) */
-        size_t height_str_len = value_len - (delimiter_location + 1);
-        char height[height_str_len];
-        strncpy(height, value + delimiter_location + 1, height_str_len);
-        settings->screen_resolution.y = (float) atoi(height);
+        free_str_arr(resolution_str);
     } else if (MATCH("video", "fullscreen")) {
         settings->fullscreen = (bool) atoi(value);
     } else if (MATCH("video", "fps")) {
