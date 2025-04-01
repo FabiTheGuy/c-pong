@@ -1,5 +1,5 @@
 #include "settings.h"
-#include "state_manager.h"
+#include "state-manager.h"
 #include <stdio.h>
 #include <raylib.h>
 

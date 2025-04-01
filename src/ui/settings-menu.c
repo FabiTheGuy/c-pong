@@ -2,7 +2,7 @@
 #include "layout.h"
 #include "settings.h"
 #include "utils.h"
-#include "state_manager.h"
+#include "state-manager.h"
 #include <stdlib.h>
 #include <string.h>
 

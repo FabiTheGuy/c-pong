@@ -5,7 +5,7 @@
 #include "drop-down.h"
 #include "button.h"
 
-#define RESOLUTION_OPTIONS "Resolution;3840x2160;2560x1440;1920x1080;1280x800"
+#define RESOLUTION_OPTIONS "Resolution;7680x4320;3840x2160;2560x1440;1920x1080;1280x720"
 #define FPS_OPTIONS "FPS;60;30"
 #define FULLSCREEN_STATES "Fullscreen;ON;OFF"
 
