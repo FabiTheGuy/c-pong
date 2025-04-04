@@ -1,9 +1,13 @@
 #include "ui/settings-menu.h"
 #include "ui/layout.h"
+#include "ui/factory.h"
+#include "ui/button.h"
+#include "ui/label.h"
+#include "ui/drop-down.h"
 #include "utils/layout.h"
 #include "utils/settings.h"
 #include "utils/string-array.h"
-#include "state-manager.h"
+#include "utils/state-manager.h"
 #include <stdlib.h>
 #include <string.h>
 #include <raylib.h>
@@ -15,132 +19,33 @@ void init_settings_menu() {
     settings_menu = (SettingsMenu) {0};
 
     const float center_screen_x = layout_center_x();
-    const int heading_font_size = get_ui_font_size(UI_ELEMENT_HEADING);
+    const Vector2 drop_down_margin = get_ui_element_margin(UI_ELEMENT_DROP_DOWN);
     const Vector2 heading_margin = get_ui_element_margin(UI_ELEMENT_HEADING);
 
-    /*
-     * Heading
-     */
-    char* heading_content = "Settings";
-    const Vector2 heading_dimension = MeasureTextEx(GetFontDefault(), heading_content, (float) heading_font_size, TEXT_SPACING);
-    settings_menu.heading_label = (Label) {
-        .bounds = (Rectangle) {
-            .x = center_screen_x - (heading_dimension.x / 2),
-            .y = heading_margin.y,
-            .width = heading_dimension.x,
-            .height = heading_dimension.y,
-        },
-        .content = heading_content,
-        .font_size = heading_font_size,
-        .color = RAYWHITE,
-    };
+    /* Heading */
+    settings_menu.heading_label = ui_create_heading("Settings", center_screen_x, heading_margin.y);
 
-    /*
-     * Resolution DropDown
-     */
-    const Vector2 drop_down_dimension = get_ui_size(UI_ELEMENT_DROP_DOWN);
-    const int drop_down_font_size = get_ui_font_size(UI_ELEMENT_DROP_DOWN);
-    const float distance_drop_down_top =
-       settings_menu.heading_label.bounds.y +
-       settings_menu.heading_label.bounds.height +
-       heading_margin.y;
+    /* Resolution DropDown */
+    float top_y = settings_menu.heading_label.bounds.y + settings_menu.heading_label.bounds.height + heading_margin.y;
+    settings_menu.resolution_drop_down = ui_create_drop_down(RESOLUTION_OPTIONS, center_screen_x, top_y, 0);
 
-    settings_menu.resolution_drop_down = (DropDown) {
-        .bounds = (Rectangle) {
-            .x = center_screen_x - (drop_down_dimension.x / 2),
-            .y = distance_drop_down_top,
-            .width = drop_down_dimension.x,
-            .height = drop_down_dimension.y,
-        },
-        .options = RESOLUTION_OPTIONS,
-        .font_size = drop_down_font_size,
-        .selection = 0,
-        .edited = false,
-    };
+    /* FPS DropDown */
+    top_y += settings_menu.resolution_drop_down.bounds.height + drop_down_margin.y;
+    settings_menu.fps_drop_down = ui_create_drop_down(FPS_OPTIONS, center_screen_x, top_y, 0);
 
-    /*
-     * FPS DropDown
-     */
-    const Vector2 drop_down_margin = get_ui_element_margin(UI_ELEMENT_DROP_DOWN);
-    const float distance_fps_drop_down_top =
-        settings_menu.resolution_drop_down.bounds.y +
-        settings_menu.resolution_drop_down.bounds.height +
-        drop_down_margin.y;
+    /* Fullscreen DropDown */
+    top_y += settings_menu.fps_drop_down.bounds.height + drop_down_margin.y;
+    settings_menu.fullscreen_drop_down = ui_create_drop_down(FULLSCREEN_STATES, center_screen_x, top_y, 0);
 
-    settings_menu.fps_drop_down = (DropDown) {
-        .bounds = (Rectangle) {
-            .x = center_screen_x - (drop_down_dimension.x / 2),
-            .y = distance_fps_drop_down_top,
-            .width = drop_down_dimension.x,
-            .height = drop_down_dimension.y,
-        },
-        .options = FPS_OPTIONS,
-        .font_size = drop_down_font_size,
-        .selection = 0,
-        .edited = false,
-    };
-
-    /*
-     * Fullscreen DropDown
-     */
-    const float distance_fullscreen_drop_down_top =
-        settings_menu.fps_drop_down.bounds.y +
-        settings_menu.fps_drop_down.bounds.height +
-        drop_down_margin.y;
-
-    settings_menu.fullscreen_drop_down = (DropDown) {
-        .bounds = (Rectangle) {
-            .x = center_screen_x - (drop_down_dimension.x / 2),
-            .y = distance_fullscreen_drop_down_top,
-            .width = drop_down_dimension.x,
-            .height = drop_down_dimension.y,
-        },
-        .options = FULLSCREEN_STATES,
-        .font_size = drop_down_font_size,
-        .selection = 0,
-        .edited = false,
-    };
-
-    /*
-     * Cancel Button
-     */
-    char* cancel_button_content = "Cancel";
+    /* Cancel/Apply Button */
+    const Vector2 button_dimensions = get_ui_size(UI_ELEMENT_BUTTON);
     const Vector2 button_margin = get_ui_element_margin(UI_ELEMENT_BUTTON);
-    const Vector2 button_dimension = get_ui_size(UI_ELEMENT_BUTTON);
-    const int button_font_size = get_ui_font_size(UI_ELEMENT_BUTTON);
-    const float distance_button_group_bot =
-        settings.screen_resolution.y -
-        button_dimension.y -
-        button_margin.y;
+    const float button_top_y = settings.screen_resolution.y - button_margin.y - button_dimensions.y;
+    const float cancel_button_x = center_screen_x - button_margin.x - (button_dimensions.x / 2);
+    const float apply_button_x = center_screen_x + button_margin.x + (button_dimensions.x / 2);
 
-    settings_menu.cancel_button = (Button) {
-        .bounds = (Rectangle) {
-            .x = center_screen_x - button_dimension.x - button_margin.x,
-            .y = distance_button_group_bot,
-            .width = button_dimension.x,
-            .height = button_dimension.y,
-        },
-        .font_size = button_font_size,
-        .content = cancel_button_content,
-        .pressed = false,
-    };
-
-    /*
-     * Apply Button
-     */
-    char* apply_button_content = "Apply";
-    settings_menu.apply_button = (Button) {
-        .bounds = (Rectangle) {
-            .x = center_screen_x +
-            button_margin.x,
-            .y = distance_button_group_bot,
-            .width = button_dimension.x,
-            .height = button_dimension.y,
-        },
-        .font_size = button_font_size,
-        .content = apply_button_content,
-        .pressed = false,
-    };
+    settings_menu.cancel_button = ui_create_button("Cancel", cancel_button_x, button_top_y);
+    settings_menu.apply_button = ui_create_button("Apply", apply_button_x, button_top_y);
 }
 
 void draw_settings_menu() {
