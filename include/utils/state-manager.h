@@ -1,5 +1,5 @@
-#ifndef C_PONG_STATE_MANAGER_H
-#define C_PONG_STATE_MANAGER_H
+#ifndef C_PONG_UTILS_STATE_MANAGER_H
+#define C_PONG_UTILS_STATE_MANAGER_H
 
 #include <stdbool.h>
 
@@ -43,4 +43,4 @@ void init_state_manager();
  */
 void change_state_manager_state(const State state);
 
-#endif /* C_PONG_STATE_MANAGER_H */
+#endif /* C_PONG_UTILS_STATE_MANAGER_H */
