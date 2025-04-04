@@ -2,6 +2,7 @@
 #include "ui/button.h"
 #include "ui/label.h"
 #include "ui/layout.h"
+#include "utils/layout.h"
 #include "state-manager.h"
 #include <raylib.h>
 
@@ -12,11 +13,11 @@ void init_main_menu() {
     main_menu = (MainMenu) {0};
 
     const float center_screen_x = layout_center_x();
-    const int button_font_size = get_font_size(UI_ELEMENT_BUTTON);
-    const int heading_font_size = get_font_size(UI_ELEMENT_HEADING);
+    const int button_font_size = get_ui_font_size(UI_ELEMENT_BUTTON);
+    const int heading_font_size = get_ui_font_size(UI_ELEMENT_HEADING);
     const Vector2 button_dimension = get_ui_size(UI_ELEMENT_BUTTON);
-    const Vector2 button_margin = get_element_margin(UI_ELEMENT_BUTTON);
-    const Vector2 heading_margin = get_element_margin(UI_ELEMENT_HEADING);
+    const Vector2 button_margin = get_ui_element_margin(UI_ELEMENT_BUTTON);
+    const Vector2 heading_margin = get_ui_element_margin(UI_ELEMENT_HEADING);
     
     
     /* 

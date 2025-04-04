@@ -1,10 +1,12 @@
 #include "ui/settings-menu.h"
 #include "ui/layout.h"
+#include "utils/layout.h"
 #include "utils/settings.h"
 #include "utils/string-array.h"
 #include "state-manager.h"
 #include <stdlib.h>
 #include <string.h>
+#include <raylib.h>
 
 
 SettingsMenu settings_menu;
@@ -13,8 +15,8 @@ void init_settings_menu() {
     settings_menu = (SettingsMenu) {0};
 
     const float center_screen_x = layout_center_x();
-    const int heading_font_size = get_font_size(UI_ELEMENT_HEADING);
-    const Vector2 heading_margin = get_element_margin(UI_ELEMENT_HEADING);
+    const int heading_font_size = get_ui_font_size(UI_ELEMENT_HEADING);
+    const Vector2 heading_margin = get_ui_element_margin(UI_ELEMENT_HEADING);
 
     /*
      * Heading
@@ -37,7 +39,7 @@ void init_settings_menu() {
      * Resolution DropDown
      */
     const Vector2 drop_down_dimension = get_ui_size(UI_ELEMENT_DROP_DOWN);
-    const int drop_down_font_size = get_font_size(UI_ELEMENT_DROP_DOWN);
+    const int drop_down_font_size = get_ui_font_size(UI_ELEMENT_DROP_DOWN);
     const float distance_drop_down_top =
        settings_menu.heading_label.bounds.y +
        settings_menu.heading_label.bounds.height +
@@ -59,7 +61,7 @@ void init_settings_menu() {
     /*
      * FPS DropDown
      */
-    const Vector2 drop_down_margin = get_element_margin(UI_ELEMENT_DROP_DOWN);
+    const Vector2 drop_down_margin = get_ui_element_margin(UI_ELEMENT_DROP_DOWN);
     const float distance_fps_drop_down_top =
         settings_menu.resolution_drop_down.bounds.y +
         settings_menu.resolution_drop_down.bounds.height +
@@ -103,9 +105,9 @@ void init_settings_menu() {
      * Cancel Button
      */
     char* cancel_button_content = "Cancel";
-    const Vector2 button_margin = get_element_margin(UI_ELEMENT_BUTTON);
+    const Vector2 button_margin = get_ui_element_margin(UI_ELEMENT_BUTTON);
     const Vector2 button_dimension = get_ui_size(UI_ELEMENT_BUTTON);
-    const int button_font_size = get_font_size(UI_ELEMENT_BUTTON);
+    const int button_font_size = get_ui_font_size(UI_ELEMENT_BUTTON);
     const float distance_button_group_bot =
         settings.screen_resolution.y -
         button_dimension.y -

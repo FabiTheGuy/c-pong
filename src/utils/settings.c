@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ini.h>
+#include <raylib.h>
 
 
 Settings settings;

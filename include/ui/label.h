@@ -15,7 +15,6 @@ typedef struct {
     Color color;
 } Label;
 
-
 /**
  * @brief Renders a graphical label onto the screen.
  *
