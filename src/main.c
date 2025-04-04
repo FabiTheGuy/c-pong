@@ -1,4 +1,4 @@
-#include "settings.h"
+#include "utils/settings.h"
 #include "state-manager.h"
 #include <stdio.h>
 #include <raylib.h>

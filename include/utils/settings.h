@@ -1,10 +1,11 @@
-#ifndef C_PONG_SETTINGS_H
-#define C_PONG_SETTINGS_H
+#ifndef C_PONG_UTILS_SETTINGS_H
+#define C_PONG_UTILS_SETTINGS_H
 
 #include <stdbool.h>
 #include <raylib.h>
 
 #define SETTINGS_FILE_PATH "./settings.ini"
+
 
 typedef struct {
     /* Represents the current game screen resolution. */
@@ -53,4 +54,4 @@ bool write_settings();
  */
 static int handler(void* data, const char* section, const char* name, const char* value);
 
-#endif /* C_PONG_SETTINGS_H */
+#endif /* C_PONG_UTILS_SETTINGS_H */

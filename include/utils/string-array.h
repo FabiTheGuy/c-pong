@@ -1,5 +1,5 @@
-#ifndef C_PONG_UTILS_H
-#define C_PONG_UTILS_H
+#ifndef C_PONG_UTILS_STRING_ARRAY_H
+#define C_PONG_UTILS_STRING_ARRAY_H
 
 #include <stddef.h>
 
@@ -38,4 +38,4 @@ void free_str_arr(StringArray* string_array);
  */
 StringArray* split_str(const char* str, char del);
 
-#endif /* C_PONG_UTILS_H */
+#endif /* C_PONG_UTILS_STRING_ARRAY_H */

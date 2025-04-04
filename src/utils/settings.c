@@ -1,5 +1,5 @@
-#include "settings.h"
-#include "utils.h"
+#include "utils/settings.h"
+#include "utils/string-array.h"
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>

@@ -1,8 +1,8 @@
-#ifndef C_PONG_MAIN_MENU_H
-#define C_PONG_MAIN_MENU_H
+#ifndef C_PONG_UI_MAIN_MENU_H
+#define C_PONG_UI_MAIN_MENU_H
 
-#include "button.h"
-#include "label.h"
+#include "ui/button.h"
+#include "ui/label.h"
 
 
 typedef struct {
@@ -44,4 +44,4 @@ void draw_main_menu();
  */
 void update_main_menu();
 
-#endif /* C_PONG_MAIN_MENU_H */
+#endif /* C_PONG_UI_MAIN_MENU_H */

@@ -1,13 +1,14 @@
-#ifndef C_PONG_SETTINGS_MENU_H
-#define C_PONG_SETTINGS_MENU_H
+#ifndef C_PONG_UI_SETTINGS_MENU_H
+#define C_PONG_UI_SETTINGS_MENU_H
 
-#include "label.h"
-#include "drop-down.h"
-#include "button.h"
+#include "ui/label.h"
+#include "ui/button.h"
+#include "ui/drop-down.h"
 
 #define RESOLUTION_OPTIONS "Resolution;7680x4320;3840x2160;2560x1440;1920x1080;1280x720"
 #define FPS_OPTIONS "FPS;60;30"
 #define FULLSCREEN_STATES "Fullscreen;ON;OFF"
+
 
 typedef struct {
     /* Represents the main heading label displayed in the interface. */
@@ -53,4 +54,4 @@ void draw_settings_menu();
  */
 void update_settings_menu();
 
-#endif /* C_PONG_SETTINGS_MENU_H */
+#endif /* C_PONG_UI_SETTINGS_MENU_H */

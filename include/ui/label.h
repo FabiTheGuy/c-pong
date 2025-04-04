@@ -1,7 +1,7 @@
-#ifndef C_PONG_LABEL_H
-#define C_PONG_LABEL_H
+#ifndef C_PONG_UI_LABEL_H
+#define C_PONG_UI_LABEL_H
 
-#include "raygui.h"
+#include "ui/raygui.h"
 
 
 typedef struct {
@@ -27,4 +27,4 @@ typedef struct {
  */
 void draw_label(const Label* label);
 
-#endif /* C_PONG_LABEL_H */
+#endif /* C_PONG_UI_LABEL_H */

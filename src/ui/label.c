@@ -1,4 +1,4 @@
-#include "label.h"
+#include "ui/label.h"
 
 
 void draw_label(const Label* label) {

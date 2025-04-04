@@ -1,5 +1,5 @@
-#ifndef C_PONG_LAYOUT_H
-#define C_PONG_LAYOUT_H
+#ifndef C_PONG_UI_LAYOUT_H
+#define C_PONG_UI_LAYOUT_H
 
 #include <raylib.h>
 
@@ -119,4 +119,4 @@ float layout_center_y();
  */
 Vector2 layout_center();
 
-#endif /* C_PONG_LAYOUT_H */
+#endif /* C_PONG_UI_LAYOUT_H */

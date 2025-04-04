@@ -1,7 +1,8 @@
-#ifndef C_PONG_BUTTON_H
-#define C_PONG_BUTTON_H
+#ifndef C_PONG_UI_BUTTON_H
+#define C_PONG_UI_BUTTON_H
 
-#include "layout.h"
+#include "ui/layout.h"
+#include "ui/raygui.h"
 
 
 typedef struct {
@@ -29,4 +30,4 @@ typedef struct {
  */
 void draw_button(Button* button);
 
-#endif /* C_PONG_BUTTON_H */
+#endif /* C_PONG_UI_BUTTON_H */

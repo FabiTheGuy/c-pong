@@ -1,7 +1,7 @@
-#include "main-menu.h"
-#include "button.h"
-#include "label.h"
-#include "layout.h"
+#include "ui/main-menu.h"
+#include "ui/button.h"
+#include "ui/label.h"
+#include "ui/layout.h"
 #include "state-manager.h"
 #include <raylib.h>
 

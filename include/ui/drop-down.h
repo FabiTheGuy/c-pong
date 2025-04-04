@@ -1,7 +1,7 @@
-#ifndef C_PONG_DROP_DOWN_H
-#define C_PONG_DROP_DOWN_H
+#ifndef C_PONG_UI_DROP_DOWN_H
+#define C_PONG_UI_DROP_DOWN_H
 
-#include "raygui.h"
+#include "ui/raygui.h"
 
 
 typedef struct {
@@ -31,4 +31,4 @@ typedef struct {
  */
 void draw_drop_down(DropDown* drop_down);
 
-#endif /* C_PONG_DROP_DOWN_H */
+#endif /* C_PONG_UI_DROP_DOWN_H */

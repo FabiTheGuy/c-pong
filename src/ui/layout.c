@@ -1,5 +1,5 @@
-#include "layout.h"
-#include "settings.h"
+#include "ui/layout.h"
+#include "utils/settings.h"
 #include <raylib.h>
 
 

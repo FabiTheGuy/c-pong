@@ -24,7 +24,7 @@ sources = [
   './src/ui/settings-menu.c',
   './src/state-manager.c',
   './src/utils/settings.c',
-  './src/utils/utils.c',
+  './src/utils/string-array.c',
 ]
 
 executable(

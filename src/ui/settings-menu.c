@@ -1,7 +1,7 @@
-#include "settings-menu.h"
-#include "layout.h"
-#include "settings.h"
-#include "utils.h"
+#include "ui/settings-menu.h"
+#include "ui/layout.h"
+#include "utils/settings.h"
+#include "utils/string-array.h"
 #include "state-manager.h"
 #include <stdlib.h>
 #include <string.h>
