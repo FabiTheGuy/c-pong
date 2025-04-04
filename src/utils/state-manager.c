@@ -1,7 +1,6 @@
+#include "utils/state-manager.h"
 #include "ui/main-menu.h"
 #include "ui/settings-menu.h"
-#include "state-manager.h"
-
 
 
 StateManager state_manager;

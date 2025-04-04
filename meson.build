@@ -22,7 +22,7 @@ sources = [
   './src/ui/layout.c',
   './src/ui/main-menu.c',
   './src/ui/settings-menu.c',
-  './src/state-manager.c',
+  './src/utils/state-manager.c',
   './src/utils/settings.c',
   './src/utils/string-array.c',
   './src/utils/layout.c',
