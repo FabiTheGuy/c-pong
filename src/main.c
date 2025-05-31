@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "config.h"
+#include "playfield.h"
 
 
 Vector2 winDimensions;
@@ -26,12 +27,20 @@ int main(const int argc, const char** argv) {
         TraceLog(LOG_FATAL, "Not enough arguments! Expected: ./pong <width> <height>\n");
     }
 
-    parseArguments(argv);    
+    parseArguments(argv);
     
     InitWindow(winDimensions.x, winDimensions.y, "C-Pong");
 
+    initArena();
+
     while (!WindowShouldClose()) {
         BeginDrawing();
+
+        drawArena();
+
+        drawScore("0", SCORE_1);
+        drawScore("0", SCORE_2);
+
         EndDrawing();
     }
 
