@@ -1,0 +1,6 @@
+# Clangd
+.cache/
+compile_commands.json
+
+# Makefile
+bin/
