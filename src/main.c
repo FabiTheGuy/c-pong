@@ -1,20 +1,37 @@
 #include <raylib.h>
+#include <stdlib.h>
 
-#define WIN_WIDTH 200
-#define WIN_HEIGHT 200
+#include "config.h"
 
+
+Vector2 winDimensions;
+
+
+void parseArguments(const char** argv) {
+    const int width = atoi(argv[1]);
+    const int height = atoi(argv[2]);
+
+    if (!width || !height) {
+        TraceLog(LOG_FATAL, "Invalid Dimensions!\n");
+    }
+
+    winDimensions = (Vector2) {
+        .x = width,
+        .y = height,
+    };
+}
 
 int main(const int argc, const char** argv) {
-    InitWindow(WIN_WIDTH, WIN_HEIGHT, "Hello, World!");
+    if (argc != 3) {
+        TraceLog(LOG_FATAL, "Not enough arguments! Expected: ./pong <width> <height>\n");
+    }
+
+    parseArguments(argv);    
+    
+    InitWindow(winDimensions.x, winDimensions.y, "C-Pong");
 
     while (!WindowShouldClose()) {
         BeginDrawing();
-        
-        const char* text = "Hello, World!";
-        const int size = MeasureText(text, 16);
-        
-        DrawText("Hello, World", WIN_WIDTH / 2 - size / 2, WIN_HEIGHT / 2 - 8, 16, WHITE);
-
         EndDrawing();
     }
 
